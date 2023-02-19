@@ -39,6 +39,11 @@ class UpcomingViewModel extends UpcomingProtocol {
   }
 
   @override
+  void didTap(int index) {
+    onTapGoToDetails?.call(_movies[index]);
+  }
+
+  @override
   void getUpcoming() {
     setLoading(true);
     useCase.execute(

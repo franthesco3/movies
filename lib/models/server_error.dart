@@ -64,7 +64,7 @@ extension ErrorExtension on Error {
   ServerError mapToServerError() {
     final error = this as DioError;
 
-    if (error.type == DioErrorType.connectionTimeout) {
+    if (error.type == DioErrorType.connectTimeout) {
       return ServerError(
           error: 'Tempo de requisição atingida, tente novamente mais tarde');
     }
