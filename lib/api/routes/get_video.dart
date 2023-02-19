@@ -3,20 +3,20 @@ import 'package:movies/support/utils/constants.dart';
 import '../setup/api_provider.dart';
 import '../setup/endpoint.dart';
 
-abstract class UpcomingRoutesProtocol {
-  void getUpcoming({Success? success, Failure? failure});
+abstract class GetVideoRoutesProtocol {
+  void getVideo({required int movieId, Success? success, Failure? failure});
 }
 
-class UpcomingRoutes extends UpcomingRoutesProtocol {
+class GetVideoRoutes extends GetVideoRoutesProtocol {
   final ApiProvider _provider = ApiProvider();
 
   @override
-  void getUpcoming({Success? success, Failure? failure}) {
+  void getVideo({required int movieId, Success? success, Failure? failure}) {
     final queryParameters = {'api_key': Constants.apiKey};
 
     final endpoint = Endpoint(
-      path: '/upcoming',
       method: Method.get,
+      path: '/$movieId/videos',
       queryParameters: queryParameters,
     );
 

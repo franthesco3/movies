@@ -1,5 +1,6 @@
 class Movie {
   final int id;
+  bool isFavorite;
   final bool video;
   final String title;
   final String overview;
@@ -8,6 +9,7 @@ class Movie {
 
   Movie.fromMap(Map<String, dynamic> map)
       : id = map['id'],
+        isFavorite = false,
         title = map['title'],
         video = map['video'],
         overview = map['overview'],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../support/components/bottom_navigation_bar.dart';
 import '../../../support/components/card.dart';
 
 abstract class UpcomingViewModelProtocol extends ChangeNotifier {
@@ -7,6 +8,7 @@ abstract class UpcomingViewModelProtocol extends ChangeNotifier {
   int get length;
   bool get isLoading;
 
+  void didTap(int index);
   String title(int index);
   void setIndex(int index);
   String imagePath(int index);
@@ -20,33 +22,13 @@ class UpcomingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: const Text('MoviesDB')),
       backgroundColor: Colors.blueGrey,
       bottomNavigationBar: AnimatedBuilder(
           animation: viewModel,
           builder: (context, snapshot) {
-            return BottomNavigationBar(
-              type: BottomNavigationBarType.fixed,
-              backgroundColor: Colors.blue,
-              items: const <BottomNavigationBarItem>[
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  label: 'Upcoming',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.stars),
-                  label: 'Popular',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.search),
-                  label: 'Search',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.favorite),
-                  label: 'Favorites',
-                ),
-              ],
-              selectedItemColor: Colors.white,
-              currentIndex: viewModel.index,
+            return BottomNavBar(
+              index: viewModel.index,
               onTap: viewModel.setIndex,
             );
           }),
@@ -59,10 +41,6 @@ class UpcomingView extends StatelessWidget {
 
           return CustomScrollView(
             slivers: [
-              const SliverAppBar(
-                pinned: true,
-                title: Text('MovieDb'),
-              ),
               SliverPadding(
                 padding: const EdgeInsets.symmetric(
                   vertical: 16,
@@ -74,8 +52,11 @@ class UpcomingView extends StatelessWidget {
                   ),
                   delegate: SliverChildBuilderDelegate(
                     (_, index) {
-                      return CardMovie(
-                        path: viewModel.imagePath(index),
+                      return InkWell(
+                        onTap: () => viewModel.didTap(index),
+                        child: CardMovie(
+                          path: viewModel.imagePath(index),
+                        ),
                       );
                     },
                     childCount: viewModel.length,
