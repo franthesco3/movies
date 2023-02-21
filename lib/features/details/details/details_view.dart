@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movies/features/favorite/favorites_factory.dart';
-
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../components/text_item.dart';
+import '../components/vote_widget.dart';
+import '../components/youtube_video_widget.dart';
 
 abstract class DetailsViewModelProtocol extends ChangeNotifier {
   String? get key;
@@ -50,26 +49,7 @@ class DetailsView extends StatelessWidget {
                   fontSize: 18,
                   title: viewModel.overview,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Row(
-                    children: [
-                      Text(
-                        'Nota: ${viewModel.vote}',
-                        style: const TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      const Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                      ),
-                    ],
-                  ),
-                ),
+                VoteAverage(vote: viewModel.vote),
                 const SizedBox(height: 24),
                 const Padding(
                   padding: EdgeInsets.only(left: 8),
@@ -86,16 +66,7 @@ class DetailsView extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 12),
-                Container(
-                  height: 330,
-                  width: double.infinity,
-                  child: YoutubePlayer(
-                    controller: YoutubePlayerController(
-                      initialVideoId: viewModel.key ?? '',
-                    ),
-                    showVideoProgressIndicator: true,
-                  ),
-                ),
+                YoutuVideoWidget(videoKey: viewModel.key ?? ''),
                 const SizedBox(height: 90),
               ],
             ),
@@ -104,7 +75,7 @@ class DetailsView extends StatelessWidget {
       ),
       floatingActionButton: AnimatedBuilder(
         animation: viewModel,
-        builder: (context, snapshot) {
+        builder: (_, __) {
           return FloatingActionButton(
             onPressed: viewModel.setFavorite,
             child: Icon(Icons.favorite, color: colorFavoriteIcon),
