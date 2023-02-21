@@ -1,50 +1,30 @@
 import 'package:flutter/material.dart';
 
-import '../../../support/components/bottom_navigation_bar.dart';
 import '../../../support/components/card.dart';
-import '../../favorite/favorites_factory.dart';
 
-abstract class UpcomingViewModelProtocol extends ChangeNotifier {
-  int get index;
+abstract class PopularViewModelProtocol extends ChangeNotifier {
   int get length;
   bool get isLoading;
 
+  void getPopular();
   void didTap(int index);
   String title(int index);
   void setIndex(int index);
   String imagePath(int index);
 }
 
-class UpcomingView extends StatelessWidget {
-  final UpcomingViewModelProtocol viewModel;
+class PopularView extends StatelessWidget {
+  final PopularViewModelProtocol viewModel;
 
-  const UpcomingView({super.key, required this.viewModel});
+  const PopularView({super.key, required this.viewModel});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('MoviesDB'),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 12),
-            child: InkWell(
-              onTap: () =>
-                  Navigator.of(context).pushNamed(FavoriteFactory.route),
-              child: const Icon(Icons.favorite),
-            ),
-          )
-        ],
       ),
       backgroundColor: Colors.blueGrey,
-      bottomNavigationBar: AnimatedBuilder(
-          animation: viewModel,
-          builder: (_, __) {
-            return BottomNavBar(
-              index: viewModel.index,
-              onTap: viewModel.setIndex,
-            );
-          }),
       body: AnimatedBuilder(
         animation: viewModel,
         builder: (_, __) {

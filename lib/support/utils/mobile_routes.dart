@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies/features/details/details_factory.dart';
+import 'package:movies/features/popular/popular_factory.dart';
 import 'package:movies/features/upcoming/upcoming_factory.dart';
 
 import '../../features/favorite/favorites_factory.dart';
@@ -18,6 +19,9 @@ class MobileRoutes {
     },
     FavoriteFactory.route: (_) {
       return FavoriteFactory.favorite();
+    },
+    PopularFactory.route: (_) {
+      return PopularFactory.popular();
     }
   };
 }
