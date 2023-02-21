@@ -5,7 +5,7 @@ import 'package:movies/features/upcoming/upcoming/upcoming_view_model.dart';
 import 'package:movies/features/upcoming/use_case/upcoming_use_case.dart';
 
 class UpcomingFactory {
-  static String route = '/home';
+  static String route = '/upcoming';
 
   static StatefulWidget home() {
     final routes = UpcomingRoutes();

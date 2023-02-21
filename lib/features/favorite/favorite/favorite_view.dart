@@ -21,7 +21,13 @@ class FavoriteView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('MoviesDB'),
+        title: const Text('MoviesDB - Favorites'),
+        actions: const [
+          Padding(
+            padding: EdgeInsets.only(right: 16),
+            child: Icon(Icons.refresh),
+          )
+        ],
       ),
       backgroundColor: Colors.blueGrey,
       body: AnimatedBuilder(
@@ -43,28 +49,32 @@ class FavoriteView extends StatelessWidget {
             );
           }
 
-          return CustomScrollView(
-            slivers: [
-              SliverPadding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 16,
-                ),
-                sliver: SliverGrid(
-                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                    mainAxisSpacing: 20,
-                    maxCrossAxisExtent: 200,
+          return RefreshIndicator(
+            onRefresh: () => viewModel.getMovie(),
+            child: CustomScrollView(
+              slivers: [
+                SliverPadding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 16,
                   ),
-                  delegate: SliverChildBuilderDelegate(
-                    (_, index) {
-                      return CardMovie(
-                        path: viewModel.imagePath(index),
-                      );
-                    },
-                    childCount: viewModel.length,
+                  sliver: SliverGrid(
+                    gridDelegate:
+                        const SliverGridDelegateWithMaxCrossAxisExtent(
+                      mainAxisSpacing: 20,
+                      maxCrossAxisExtent: 200,
+                    ),
+                    delegate: SliverChildBuilderDelegate(
+                      (_, index) {
+                        return CardMovie(
+                          path: viewModel.imagePath(index),
+                        );
+                      },
+                      childCount: viewModel.length,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           );
         },
       ),
