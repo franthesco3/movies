@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:movies/features/favorite/favorites_factory.dart';
 
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../components/text_item.dart';
 
 abstract class DetailsViewModelProtocol extends ChangeNotifier {
-  String get key;
+  String? get key;
   String get vote;
   String get title;
   bool get isLoading;
@@ -90,7 +91,7 @@ class DetailsView extends StatelessWidget {
                   width: double.infinity,
                   child: YoutubePlayer(
                     controller: YoutubePlayerController(
-                      initialVideoId: viewModel.key,
+                      initialVideoId: viewModel.key ?? '',
                     ),
                     showVideoProgressIndicator: true,
                   ),

@@ -1,3 +1,4 @@
+import 'package:hive/hive.dart';
 import 'package:movies/features/details/details/details_view_controller.dart';
 import 'package:movies/support/utils/constants.dart';
 
@@ -6,13 +7,18 @@ import '../../../models/video.dart';
 import '../use_case/get_video_use_case.dart';
 
 class DetailsViewModel extends DetailsProtocol {
-  bool _isLoading = false;
+  late Box box;
   final Movie movie;
   late Video _video;
+  bool _isFavorite = false;
+  bool _isLoading = false;
 
   final GetVideoUseCaseProtocol useCase;
 
   DetailsViewModel({required this.useCase, required this.movie});
+
+  @override
+  String? get key => _video.key;
 
   @override
   String get title => movie.title;
@@ -24,45 +30,74 @@ class DetailsViewModel extends DetailsProtocol {
   String get overview => movie.overview;
 
   @override
-  String get vote => movie.voteAverage.toString();
+  bool get isFavorited => _isFavorite;
 
   @override
-  bool get isFavorited => movie.isFavorite;
+  String get vote => movie.voteAverage.toString();
 
   @override
   String get imagePath => Constants.urlImagePath + movie.imagePath;
 
   @override
-  String get key => _video.key;
-
-  @override
-  void setFavorite() {
-    movie.isFavorite = !movie.isFavorite;
-
+  void setFavorite() async {
+    if (_isFavorite) {
+      _remove(movie);
+      _isFavorite = false;
+    } else {
+      _saveMovie(movie);
+      _isFavorite = true;
+    }
     notifyListeners();
   }
 
   @override
-  void getVideo() {
-    setLoading(true);
+  void getVideo() async {
+    _setLoading(true);
+    _verifyFavorite();
     useCase.execute(
       movieId: movie.id,
       success: (video) {
         _video = video;
 
-        setLoading(false);
+        _setLoading(false);
       },
       failure: (error) {
         print(error);
 
-        setLoading(false);
+        _setLoading(false);
       },
     );
   }
 
-  void setLoading(bool value) {
+  void _setLoading(bool value) {
     _isLoading = value;
 
     notifyListeners();
+  }
+
+  void _saveMovie(Movie movie) async {
+    box = await Hive.openBox<Movie>('movies');
+
+    box.put(movie.id, movie);
+
+    notifyListeners();
+  }
+
+  void _remove(Movie movie) async {
+    box = await Hive.openBox<Movie>('movies');
+    box.delete(movie.id);
+
+    notifyListeners();
+  }
+
+  void _changeFavorite(bool value) {
+    _isFavorite = value;
+
+    notifyListeners();
+  }
+
+  void _verifyFavorite() async {
+    box = await Hive.openBox<Movie>('movies');
+    if (box.containsKey(movie.id)) _changeFavorite(true);
   }
 }

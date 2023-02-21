@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:movies/support/adapters/movie_adapter.dart';
+import 'package:movies/support/utils/hive_configs.dart';
 
 import 'support/utils/mobile_routes.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await HiveConfigs.start();
+  Hive.registerAdapter(MovieHiveAdapter());
+
   runApp(const MyApp());
 }
 
