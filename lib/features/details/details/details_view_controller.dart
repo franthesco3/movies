@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:movies/features/details/details/details_view.dart';
-import 'package:movies/support/utils/hive_configs.dart';
 
 abstract class DetailsProtocol extends DetailsViewModelProtocol {}
 

@@ -29,6 +29,7 @@ class FavoriteViewModel extends FavoriteProtocol {
 
   @override
   Future<void> getMovie() async {
+    _movies.clear();
     _setLoading(true);
     HiveConfigs.start();
     _box = await Hive.openBox<Movie>('movies');
@@ -36,6 +37,7 @@ class FavoriteViewModel extends FavoriteProtocol {
     _movies.addAll(list);
 
     _setLoading(false);
+    notifyListeners();
   }
 
   void _setLoading(bool value) {
