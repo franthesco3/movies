@@ -6,6 +6,7 @@ import '../../../models/movie.dart';
 
 abstract class UpcomingProtocol extends UpcomingViewModelProtocol {
   void getUpcoming();
+  void Function()? onFailureGetUpcoming;
   void Function(Movie movie)? onTapGoToDetails;
 }
 
@@ -34,6 +35,13 @@ class _UpcomingViewControllerState extends State<UpcomingViewController> {
   void _bind() {
     widget.viewModel.onTapGoToDetails = (movie) {
       Navigator.pushNamed(context, DetailsFactory.route, arguments: movie);
+    };
+
+    widget.viewModel.onFailureGetUpcoming = () {
+      const snackBar = SnackBar(
+        content: Text('Erro inesperado, tente novamente mais tarde!'),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     };
   }
 }

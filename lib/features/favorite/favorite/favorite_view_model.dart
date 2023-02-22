@@ -23,6 +23,11 @@ class FavoriteViewModel extends FavoriteProtocol {
   bool get isEmpty => _movies.isEmpty;
 
   @override
+  void didTap(int index) {
+    onTapGoToDetails?.call(_movies[index]);
+  }
+
+  @override
   String imagePath(int index) {
     return Constants.urlImagePath + _movies[index].imagePath;
   }

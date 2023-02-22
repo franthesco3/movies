@@ -4,6 +4,7 @@ import '../../../support/components/card.dart';
 
 abstract class SearchViewModelProtocol extends ChangeNotifier {
   int get length;
+  bool get isEmpty;
   bool get isLoading;
 
   void getSearchQuery();
@@ -30,6 +31,11 @@ class SearchView extends StatelessWidget {
         builder: (_, __) {
           if (viewModel.isLoading) {
             return const Center(child: CircularProgressIndicator());
+          }
+
+          if (viewModel.isEmpty) {
+            return const Center(
+                child: Text('Nâo foi possivel carregar os dados!'));
           }
 
           return CustomScrollView(

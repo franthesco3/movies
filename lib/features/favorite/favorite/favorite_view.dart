@@ -8,6 +8,7 @@ abstract class FavoriteViewModelProtocol extends ChangeNotifier {
   bool get isEmpty;
   bool get isLoading;
 
+  void didTap(int index);
   Future<void> getMovie();
   String imagePath(int index);
 }
@@ -65,8 +66,11 @@ class FavoriteView extends StatelessWidget {
                     ),
                     delegate: SliverChildBuilderDelegate(
                       (_, index) {
-                        return CardMovie(
-                          path: viewModel.imagePath(index),
+                        return InkWell(
+                          onTap: () => viewModel.didTap(index),
+                          child: CardMovie(
+                            path: viewModel.imagePath(index),
+                          ),
                         );
                       },
                       childCount: viewModel.length,

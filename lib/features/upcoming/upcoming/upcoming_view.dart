@@ -5,6 +5,7 @@ import '../../../support/components/card.dart';
 abstract class UpcomingViewModelProtocol extends ChangeNotifier {
   int get index;
   int get length;
+  bool get isEmpty;
   bool get isLoading;
 
   void didTap(int index);
@@ -30,6 +31,12 @@ class UpcomingView extends StatelessWidget {
         builder: (_, __) {
           if (viewModel.isLoading) {
             return const Center(child: CircularProgressIndicator());
+          }
+
+          if (viewModel.isEmpty) {
+            return const Center(
+              child: Text('Nâo foi possível carregar os dados'),
+            );
           }
 
           return CustomScrollView(
