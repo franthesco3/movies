@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies/features/favorite/favorites_factory.dart';
 import 'package:movies/features/popular/popular_factory.dart';
+import 'package:movies/features/search/search_factory.dart';
 import 'package:movies/features/upcoming/upcoming_factory.dart';
 
 import '../../../support/components/bottom_navigation_bar.dart';
@@ -18,7 +19,7 @@ class HomeView extends StatelessWidget {
   final contents = <Widget>[
     UpcomingFactory.home(),
     PopularFactory.popular(),
-    const Center(child: Text('Funcionalidade em andamento')),
+    SearchFactory.search(),
     FavoriteFactory.favorite(),
   ];
 

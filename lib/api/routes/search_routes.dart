@@ -2,19 +2,22 @@ import '../../support/utils/constants.dart';
 import '../setup/api_provider.dart';
 import '../setup/endpoint.dart';
 
-abstract class PopularRoutesProtocol {
-  void getPopular({Success? success, Failure? failure});
+abstract class SearchRoutesProtocol {
+  void search({required String query, Success? success, Failure? failure});
 }
 
-class PopularRoutes extends PopularRoutesProtocol {
+class SearchRoutes extends SearchRoutesProtocol {
   final ApiProvider _provider = ApiProvider();
 
   @override
-  void getPopular({Success? success, Failure? failure}) {
-    final queryParameters = {'api_key': Constants.apiKey};
+  void search({required String query, Success? success, Failure? failure}) {
+    final queryParameters = {
+      'query': query,
+      'api_key': Constants.apiKey,
+    };
 
     final endpoint = Endpoint(
-      path: '/movie/popular',
+      path: '/search/movie',
       method: Method.get,
       queryParameters: queryParameters,
     );

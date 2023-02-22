@@ -16,7 +16,7 @@ class GetVideoRoutes extends GetVideoRoutesProtocol {
 
     final endpoint = Endpoint(
       method: Method.get,
-      path: '/$movieId/videos',
+      path: '/movie/$movieId/videos',
       queryParameters: queryParameters,
     );
 
