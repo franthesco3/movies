@@ -28,13 +28,15 @@ class SearchViewModel extends SearchProtocol {
     _query = value;
 
     notifyListeners();
-    print(_query);
   }
 
   @override
   void didTap(int index) {
     onTapGoToDetails?.call(_movies[index]);
   }
+
+  @override
+  bool get isEmpty => _movies.isEmpty;
 
   @override
   void searchMovies(String query) {

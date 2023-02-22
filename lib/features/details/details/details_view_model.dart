@@ -43,9 +43,11 @@ class DetailsViewModel extends DetailsProtocol {
     if (_isFavorite) {
       _remove(movie);
       _isFavorite = false;
+      removeMovie?.call();
     } else {
       _saveMovie(movie);
       _isFavorite = true;
+      addMovie?.call();
     }
     notifyListeners();
   }

@@ -30,6 +30,9 @@ class PopularViewModel extends PopularProtocol {
   }
 
   @override
+  bool get isEmpty => _movies.isEmpty;
+
+  @override
   String imagePath(int index) {
     return Constants.urlImagePath + _movies[index].imagePath;
   }

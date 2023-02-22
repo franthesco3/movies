@@ -44,6 +44,9 @@ class UpcomingViewModel extends UpcomingProtocol {
   }
 
   @override
+  bool get isEmpty => _movies.isEmpty;
+
+  @override
   void getUpcoming() {
     setLoading(true);
     useCase.execute(
@@ -55,6 +58,7 @@ class UpcomingViewModel extends UpcomingProtocol {
       failure: (error) {
         setLoading(false);
         print(error.description);
+        onFailureGetUpcoming?.call();
       },
     );
   }
