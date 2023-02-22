@@ -1,16 +1,22 @@
 # movies
 
-A new Flutter project.
+O projeto é um desaofio proposta a vaga de dev junior.
 
 ## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Para rodar o projeto, clone o projeto e rode o seguinte comando:
+  flutter pub get;
+ Quando esse processo terminar, pode rodar em modo debbug ou usar o comando flutter run.
+ 
+ A arquitetura que utilizei foi a MVVM, onde achei mais apropiada pelo motivo de refatoraçâo, onde podemos implementar de forma efetiva os princiíos do solide e deixar o codigo mais limpo.
+ 
+ Se tivesse um pouco mais de tempo, adicionaria uma splashScreen para tornar a experiência mais real no uso do app
+ Além disso, melhoraria em alguns pontos, como concentrar estilos em uma classe Singleton.
+ 
+ As dependências utilizadas foram:
+  - dio: ^4.0.4
+  - intl: ^0.17.0
+  - video_player: ^2.5.1
+  - flutter_vlc_player: ^7.2.0
+  - youtube_player_flutter: ^8.1.2
+  - hive: ^2.2.3
+  - path_provider: ^2.0.12
