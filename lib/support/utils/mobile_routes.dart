@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movies/features/details/details_factory.dart';
 import 'package:movies/features/home/home_factory.dart';
 import 'package:movies/features/popular/popular_factory.dart';
+import 'package:movies/features/search/search_factory.dart';
 import 'package:movies/features/upcoming/upcoming_factory.dart';
 
 import '../../features/favorite/favorites_factory.dart';
@@ -14,10 +15,6 @@ class MobileRoutes {
     UpcomingFactory.route: (_) {
       return UpcomingFactory.home();
     },
-    DetailsFactory.route: (context) {
-      final movie = ModalRoute.of(context)?.settings.arguments as Movie;
-      return DetailsFactory.details(movie);
-    },
     FavoriteFactory.route: (_) {
       return FavoriteFactory.favorite();
     },
@@ -26,6 +23,14 @@ class MobileRoutes {
     },
     HomeFactory.route: (_) {
       return HomeFactory.home();
-    }
+    },
+    SearchFactory.route: (_) {
+      return SearchFactory.search();
+    },
+    DetailsFactory.route: (context) {
+      final movie = ModalRoute.of(context)?.settings.arguments as Movie;
+
+      return DetailsFactory.details(movie);
+    },
   };
 }

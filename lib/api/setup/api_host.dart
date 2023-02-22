@@ -4,7 +4,7 @@ class ApiHost {
   static String get versionPath => 'v3';
 
   static String get baseURL {
-    return 'https://api.themoviedb.org/3/movie';
+    return 'https://api.themoviedb.org/3';
   }
 
   static Future<Map<String, dynamic>> get sessionHeaders async {

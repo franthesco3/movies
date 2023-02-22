@@ -15,7 +15,7 @@ class UpcomingRoutes extends UpcomingRoutesProtocol {
     final queryParameters = {'api_key': Constants.apiKey};
 
     final endpoint = Endpoint(
-      path: '/upcoming',
+      path: '/movie/upcoming',
       method: Method.get,
       queryParameters: queryParameters,
     );

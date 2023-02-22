@@ -21,6 +21,7 @@ class ApiProvider {
 
     await _dio.request(endpoint.path, data: endpoint.data).then((response) {
       success?.call(response.data);
+      print(_dio.options.baseUrl);
     }).onError<DioError>((error, stackTrace) {
       failure?.call(error);
     });

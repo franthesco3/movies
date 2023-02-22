@@ -2,27 +2,27 @@ import 'package:flutter/material.dart';
 
 import '../../../support/components/card.dart';
 
-abstract class PopularViewModelProtocol extends ChangeNotifier {
+abstract class SearchViewModelProtocol extends ChangeNotifier {
   int get length;
   bool get isLoading;
 
-  void getPopular();
+  void getSearchQuery();
   void didTap(int index);
-  String title(int index);
-  void setIndex(int index);
+  void onChange(String value);
   String imagePath(int index);
+  void searchMovies(String query);
 }
 
-class PopularView extends StatelessWidget {
-  final PopularViewModelProtocol viewModel;
+class SearchView extends StatelessWidget {
+  final SearchViewModelProtocol viewModel;
 
-  const PopularView({super.key, required this.viewModel});
+  const SearchView({super.key, required this.viewModel});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('MoviesDB - Popular'),
+        title: const Text('MoviesDB - Search'),
       ),
       backgroundColor: Colors.blueGrey,
       body: AnimatedBuilder(
@@ -34,6 +34,24 @@ class PopularView extends StatelessWidget {
 
           return CustomScrollView(
             slivers: [
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                  child: TextField(
+                    obscureText: false,
+                    decoration: InputDecoration(
+                      suffixIcon: InkWell(
+                        onTap: viewModel.getSearchQuery,
+                        child: const Icon(Icons.search, size: 32),
+                      ),
+                      border: const OutlineInputBorder(),
+                      labelText: 'Pesquisar filme',
+                    ),
+                    onChanged: viewModel.onChange,
+                  ),
+                ),
+              ),
               SliverPadding(
                 padding: const EdgeInsets.symmetric(
                   vertical: 16,
