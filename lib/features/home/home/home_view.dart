@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:movies/features/favorite/favorites_factory.dart';
-import 'package:movies/features/popular/popular_factory.dart';
 import 'package:movies/features/search/search_factory.dart';
-import 'package:movies/features/upcoming/upcoming_factory.dart';
-
+import 'package:movies/features/popular/popular_factory.dart';
 import '../../../support/components/bottom_navigation_bar.dart';
+import 'package:movies/features/favorite/favorites_factory.dart';
+import 'package:movies/features/upcoming/upcoming_factory.dart';
 
 abstract class HomeViewModelProtocol extends ChangeNotifier {
   int get index;

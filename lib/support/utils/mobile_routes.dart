@@ -1,12 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:movies/features/details/details_factory.dart';
-import 'package:movies/features/home/home_factory.dart';
-import 'package:movies/features/popular/popular_factory.dart';
-import 'package:movies/features/search/search_factory.dart';
-import 'package:movies/features/upcoming/upcoming_factory.dart';
-
-import '../../features/favorite/favorites_factory.dart';
 import '../../models/movie.dart';
+import 'package:flutter/material.dart';
+import '../../features/favorite/favorites_factory.dart';
+import 'package:movies/features/home/home_factory.dart';
+import 'package:movies/features/search/search_factory.dart';
+import 'package:movies/features/popular/popular_factory.dart';
+import 'package:movies/features/details/details_factory.dart';
+import 'package:movies/features/upcoming/upcoming_factory.dart';
 
 class MobileRoutes {
   static String initialRoutes = HomeFactory.route;

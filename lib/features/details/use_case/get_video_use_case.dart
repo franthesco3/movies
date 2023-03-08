@@ -1,8 +1,8 @@
-import '../../../api/routes/get_video.dart';
 import '../../../models/video.dart';
+import '../../../api/routes/get_video.dart';
 
 typedef Success = void Function(Video video);
-typedef Failure = void Function(String? error);
+typedef Failure = void Function(String error);
 
 abstract class GetVideoUseCaseProtocol {
   void execute({required int movieId, Success? success, Failure? failure});

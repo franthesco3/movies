@@ -1,7 +1,6 @@
-import 'package:movies/support/utils/constants.dart';
-
-import '../setup/api_provider.dart';
 import '../setup/endpoint.dart';
+import '../setup/api_provider.dart';
+import 'package:movies/support/utils/constants.dart';
 
 abstract class UpcomingRoutesProtocol {
   void getUpcoming({Success? success, Failure? failure});

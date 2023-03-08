@@ -1,19 +1,18 @@
-import 'package:movies/features/upcoming/upcoming/upcoming_view_controller.dart';
-import 'package:movies/features/upcoming/use_case/upcoming_use_case.dart';
-import 'package:movies/support/utils/constants.dart';
-
 import '../../../models/movie.dart';
+import 'package:movies/support/utils/constants.dart';
+import 'package:movies/features/upcoming/use_case/upcoming_use_case.dart';
+import 'package:movies/features/upcoming/upcoming/upcoming_view_controller.dart';
 
 class UpcomingViewModel extends UpcomingProtocol {
-  bool loading = false;
-  List<Movie> _movies = [];
+  bool _isLoading = false;
   int _selectedIndex = 0;
+  List<Movie> _movies = [];
   final UpcomingUseCaseProtocol useCase;
 
   UpcomingViewModel({required this.useCase});
 
   @override
-  bool get isLoading => loading;
+  bool get isLoading => _isLoading;
 
   @override
   int get length => _movies.length;
@@ -57,14 +56,13 @@ class UpcomingViewModel extends UpcomingProtocol {
       },
       failure: (error) {
         setLoading(false);
-        print(error.description);
         onFailureGetUpcoming?.call();
       },
     );
   }
 
   void setLoading(bool value) {
-    loading = value;
+    _isLoading = value;
     notifyListeners();
   }
 }

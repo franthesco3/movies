@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../support/components/card.dart';
 
 abstract class PopularViewModelProtocol extends ChangeNotifier {

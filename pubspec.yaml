@@ -36,7 +36,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   dio: ^4.0.4
-  intl: ^0.17.0
+  intl: any
   flick_video_player: ^0.5.0
   video_player: ^2.5.1
   flutter_vlc_player: ^7.2.0
@@ -44,6 +44,9 @@ dependencies:
   shared_preferences: ^2.0.17
   hive: ^2.2.3
   path_provider: ^2.0.12
+  localization: ^2.1.0
+  flutter_localizations:
+    sdk: flutter
 
 
 dev_dependencies:
@@ -62,6 +65,7 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  generate: true
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

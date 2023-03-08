@@ -1,8 +1,7 @@
+import '../../../models/movie.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/features/details/details_factory.dart';
 import 'package:movies/features/search/search/search_view.dart';
-
-import '../../../models/movie.dart';
 
 abstract class SearchProtocol extends SearchViewModelProtocol {
   void Function(String query)? getQuery;

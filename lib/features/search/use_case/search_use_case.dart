@@ -1,9 +1,7 @@
-import 'package:movies/api/routes/search_routes.dart';
-import 'package:movies/models/server_error.dart';
-
 import '../../../models/movie.dart';
+import 'package:movies/api/routes/search_routes.dart';
 
-typedef Failure = void Function(ServerError error);
+typedef Failure = void Function(String error);
 typedef Success = void Function(List<Movie> movies);
 
 abstract class SearchUseCaseProtocol {
@@ -25,11 +23,11 @@ class SearchUseCase extends SearchUseCaseProtocol {
               result['results'].map((movie) => Movie.fromMap(movie)));
           success?.call(movies);
         } on Error catch (error) {
-          failure?.call(error.asInternalError());
+          failure?.call(error.stackTrace.toString());
         }
       },
       failure: (error) {
-        failure?.call(error.asServerError());
+        failure?.call(error.message);
       },
     );
   }

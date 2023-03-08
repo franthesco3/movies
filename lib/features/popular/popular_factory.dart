@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movies/features/popular/popular/popular_view_controller.dart';
-import 'package:movies/features/popular/use_case/popular_use_case.dart';
-
-import '../../api/routes/popular_routes.dart';
 import 'popular/popular_view_model.dart';
+import '../../api/routes/popular_routes.dart';
+import 'package:movies/features/popular/use_case/popular_use_case.dart';
+import 'package:movies/features/popular/popular/popular_view_controller.dart';
 
 class PopularFactory {
   static String route = '/popular';

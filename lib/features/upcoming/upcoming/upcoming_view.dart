@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
 import '../../../support/components/card.dart';
+import '../../../support/utils/localize.dart';
 
 abstract class UpcomingViewModelProtocol extends ChangeNotifier {
   int get index;
@@ -21,6 +21,8 @@ class UpcomingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = Localize.instance.l10n;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('MoviesDB - Upcoming'),

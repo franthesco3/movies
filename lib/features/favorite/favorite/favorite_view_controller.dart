@@ -1,10 +1,7 @@
-import 'package:flutter/material.dart';
-
-import 'package:movies/features/details/details_factory.dart';
-
-import '../../../models/movie.dart';
-
 import 'favorite_view.dart';
+import '../../../models/movie.dart';
+import 'package:flutter/material.dart';
+import 'package:movies/features/details/details_factory.dart';
 
 abstract class FavoriteProtocol extends FavoriteViewModelProtocol {
   void Function(Movie movie)? onTapGoToDetails;

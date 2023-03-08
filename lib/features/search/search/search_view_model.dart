@@ -1,8 +1,7 @@
-import 'package:movies/features/search/search/search_view_controller.dart';
-import 'package:movies/features/search/use_case/search_use_case.dart';
-import 'package:movies/support/utils/constants.dart';
-
 import '../../../models/movie.dart';
+import 'package:movies/support/utils/constants.dart';
+import 'package:movies/features/search/use_case/search_use_case.dart';
+import 'package:movies/features/search/search/search_view_controller.dart';
 
 class SearchViewModel extends SearchProtocol {
   String _query = '';
@@ -28,6 +27,12 @@ class SearchViewModel extends SearchProtocol {
     _query = value;
 
     notifyListeners();
+  }
+
+  @override
+  void getSearchQuery() {
+    _movies.clear();
+    getQuery?.call(_query);
   }
 
   @override
@@ -57,11 +62,5 @@ class SearchViewModel extends SearchProtocol {
     _isLoading = value;
 
     notifyListeners();
-  }
-
-  @override
-  void getSearchQuery() {
-    _movies.clear();
-    getQuery?.call(_query);
   }
 }

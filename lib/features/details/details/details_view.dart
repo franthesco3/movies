@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import '../components/text_item.dart';
+import 'package:flutter/material.dart';
 import '../components/vote_widget.dart';
 import '../components/youtube_video_widget.dart';
 

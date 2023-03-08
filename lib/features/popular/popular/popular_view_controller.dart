@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-
-import '../../../models/movie.dart';
-import '../../details/details_factory.dart';
 import 'popular_view.dart';
+import '../../../models/movie.dart';
+import 'package:flutter/material.dart';
+import '../../details/details_factory.dart';
 
 abstract class PopularProtocol extends PopularViewModelProtocol {
   void Function(Movie movie)? onTapGoToDetails;
