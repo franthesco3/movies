@@ -1,9 +1,8 @@
 import 'package:hive/hive.dart';
-import 'package:movies/support/utils/constants.dart';
-import 'package:movies/support/utils/hive_configs.dart';
-
 import '../../../models/movie.dart';
 import 'favorite_view_controller.dart';
+import 'package:movies/support/utils/constants.dart';
+import 'package:movies/support/utils/hive_configs.dart';
 
 class FavoriteViewModel extends FavoriteProtocol {
   late Box _box;

@@ -1,6 +1,6 @@
-import '../../support/utils/constants.dart';
-import '../setup/api_provider.dart';
 import '../setup/endpoint.dart';
+import '../setup/api_provider.dart';
+import '../../support/utils/constants.dart';
 
 abstract class SearchRoutesProtocol {
   void search({required String query, Success? success, Failure? failure});

@@ -1,8 +1,7 @@
-import 'package:movies/features/popular/popular/popular_view_controller.dart';
-import 'package:movies/features/popular/use_case/popular_use_case.dart';
-
 import '../../../models/movie.dart';
 import '../../../support/utils/constants.dart';
+import 'package:movies/features/popular/use_case/popular_use_case.dart';
+import 'package:movies/features/popular/popular/popular_view_controller.dart';
 
 class PopularViewModel extends PopularProtocol {
   bool _isLoading = false;

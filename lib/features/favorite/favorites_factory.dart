@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movies/features/favorite/favorite/favorite_view_controller.dart';
 import 'package:movies/features/favorite/favorite/favorite_view_model.dart';
+import 'package:movies/features/favorite/favorite/favorite_view_controller.dart';
 
 class FavoriteFactory {
   static String route = '/favorite';

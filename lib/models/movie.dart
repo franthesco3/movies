@@ -1,6 +1,5 @@
 class Movie {
   final int id;
-  bool isFavorite = false;
   final String title;
   final String overview;
   final String imagePath;
@@ -16,7 +15,6 @@ class Movie {
 
   Movie.fromMap(Map<String, dynamic> map)
       : id = map['id'],
-        isFavorite = false,
         title = map['title'],
         overview = map['overview'],
         imagePath = map['poster_path'],

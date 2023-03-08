@@ -1,8 +1,7 @@
-import '../../../api/routes/popular_routes.dart';
 import '../../../models/movie.dart';
-import '../../../models/server_error.dart';
+import '../../../api/routes/popular_routes.dart';
 
-typedef Failure = void Function(ServerError error);
+typedef Failure = void Function(String error);
 typedef Success = void Function(List<Movie> movies);
 
 abstract class PopularUseCaseProtocol {
@@ -23,11 +22,11 @@ class PopularUseCase extends PopularUseCaseProtocol {
               result['results'].map((movie) => Movie.fromMap(movie)));
           success?.call(movies);
         } on Error catch (error) {
-          failure?.call(error.asInternalError());
+          failure?.call(error.stackTrace.toString());
         }
       },
       failure: (error) {
-        failure?.call(error.asServerError());
+        failure?.call(error.message);
       },
     );
   }

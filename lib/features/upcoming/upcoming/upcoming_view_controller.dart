@@ -1,8 +1,7 @@
+import '../../../models/movie.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/features/details/details_factory.dart';
 import 'package:movies/features/upcoming/upcoming/upcoming_view.dart';
-
-import '../../../models/movie.dart';
 
 abstract class UpcomingProtocol extends UpcomingViewModelProtocol {
   void getUpcoming();
@@ -22,8 +21,8 @@ class UpcomingViewController extends StatefulWidget {
 class _UpcomingViewControllerState extends State<UpcomingViewController> {
   @override
   void initState() {
-    widget.viewModel.getUpcoming();
     _bind();
+    widget.viewModel.getUpcoming();
     super.initState();
   }
 

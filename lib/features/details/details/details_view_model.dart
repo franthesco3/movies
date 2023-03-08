@@ -1,13 +1,12 @@
 import 'package:hive/hive.dart';
-import 'package:movies/features/details/details/details_view_controller.dart';
-import 'package:movies/support/utils/constants.dart';
-
 import '../../../models/movie.dart';
 import '../../../models/video.dart';
 import '../use_case/get_video_use_case.dart';
+import 'package:movies/support/utils/constants.dart';
+import 'package:movies/features/details/details/details_view_controller.dart';
 
 class DetailsViewModel extends DetailsProtocol {
-  late Box box;
+  late Box _box;
   final Movie movie;
   late Video _video;
   bool _isFavorite = false;
@@ -78,16 +77,16 @@ class DetailsViewModel extends DetailsProtocol {
   }
 
   void _saveMovie(Movie movie) async {
-    box = await Hive.openBox<Movie>('movies');
+    _box = await Hive.openBox<Movie>('movies');
 
-    box.put(movie.id, movie);
+    _box.put(movie.id, movie);
 
     notifyListeners();
   }
 
   void _remove(Movie movie) async {
-    box = await Hive.openBox<Movie>('movies');
-    box.delete(movie.id);
+    _box = await Hive.openBox<Movie>('movies');
+    _box.delete(movie.id);
 
     notifyListeners();
   }
@@ -99,7 +98,7 @@ class DetailsViewModel extends DetailsProtocol {
   }
 
   void _verifyFavorite() async {
-    box = await Hive.openBox<Movie>('movies');
-    if (box.containsKey(movie.id)) _changeFavorite(true);
+    _box = await Hive.openBox<Movie>('movies');
+    if (_box.containsKey(movie.id)) _changeFavorite(true);
   }
 }

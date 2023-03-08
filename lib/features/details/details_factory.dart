@@ -1,10 +1,9 @@
+import '../../models/movie.dart';
 import 'package:flutter/material.dart';
+import 'details/details_view_model.dart';
+import 'details/details_view_controller.dart';
 import 'package:movies/api/routes/get_video.dart';
 import 'package:movies/features/details/use_case/get_video_use_case.dart';
-
-import '../../models/movie.dart';
-import 'details/details_view_controller.dart';
-import 'details/details_view_model.dart';
 
 class DetailsFactory {
   static String route = '/details';
