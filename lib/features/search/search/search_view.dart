@@ -53,13 +53,12 @@ class SearchView extends StatelessWidget {
                 ),
               ),
               SliverPadding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 16,
-                ),
+                padding: const EdgeInsets.symmetric(vertical: 16),
                 sliver: SliverGrid(
-                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                    mainAxisSpacing: 20,
-                    maxCrossAxisExtent: 200,
+                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: MediaQuery.of(context).size.width / 4,
+                    mainAxisExtent: MediaQuery.of(context).size.width / 3,
+                    mainAxisSpacing: 8,
                   ),
                   delegate: SliverChildBuilderDelegate(
                     (_, index) {
@@ -73,7 +72,7 @@ class SearchView extends StatelessWidget {
                     childCount: viewModel.length,
                   ),
                 ),
-              ),
+              )
             ],
           );
         },

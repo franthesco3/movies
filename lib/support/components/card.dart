@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class CardMovie extends StatelessWidget {
   final String path;
@@ -7,22 +8,9 @@ class CardMovie extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Container(
-          padding: const EdgeInsets.symmetric(vertical: 8),
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.all(
-              Radius.circular(8.0),
-            ),
-            color: Colors.blue,
-          ),
-          child: Image.network(
-            path,
-          ),
-        ),
-      ],
+    return CachedNetworkImage(
+      imageUrl: path,
+      errorWidget: (context, url, error) => const Icon(Icons.error),
     );
   }
 }

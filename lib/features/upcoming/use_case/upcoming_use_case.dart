@@ -5,7 +5,7 @@ typedef Failure = void Function(String error);
 typedef Success = void Function(List<Movie> movies);
 
 abstract class UpcomingUseCaseProtocol {
-  void execute({Success? success, Failure? failure});
+  void execute({required String page, Success? success, Failure? failure});
 }
 
 class UpcomingUseCase extends UpcomingUseCaseProtocol {
@@ -14,8 +14,9 @@ class UpcomingUseCase extends UpcomingUseCaseProtocol {
   UpcomingUseCase({required this.routes});
 
   @override
-  void execute({Success? success, Failure? failure}) {
+  void execute({required String page, Success? success, Failure? failure}) {
     routes.getUpcoming(
+      page: page,
       success: (result) {
         try {
           final movies = List<Movie>.from(

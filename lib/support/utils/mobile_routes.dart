@@ -6,9 +6,10 @@ import 'package:movies/features/search/search_factory.dart';
 import 'package:movies/features/popular/popular_factory.dart';
 import 'package:movies/features/details/details_factory.dart';
 import 'package:movies/features/upcoming/upcoming_factory.dart';
+import '../../features/splash_screen/splash_screen_factory.dart';
 
 class MobileRoutes {
-  static String initialRoutes = HomeFactory.route;
+  static String initialRoutes = SplashScreenFactory.route;
 
   static final Map<String, WidgetBuilder> routes = {
     UpcomingFactory.route: (_) {
@@ -30,6 +31,9 @@ class MobileRoutes {
       final movie = ModalRoute.of(context)?.settings.arguments as Movie;
 
       return DetailsFactory.details(movie);
+    },
+    SplashScreenFactory.route: (context) {
+      return SplashScreenFactory.splashScreen();
     },
   };
 }

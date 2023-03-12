@@ -26,7 +26,7 @@ class DetailsView extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.blueGrey,
       appBar: AppBar(
-        title: const Text('MoviesDB'),
+        title: const Text('MoviesDB - Details'),
       ),
       body: AnimatedBuilder(
         animation: viewModel,

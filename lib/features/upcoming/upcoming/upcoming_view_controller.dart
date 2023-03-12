@@ -4,7 +4,6 @@ import 'package:movies/features/details/details_factory.dart';
 import 'package:movies/features/upcoming/upcoming/upcoming_view.dart';
 
 abstract class UpcomingProtocol extends UpcomingViewModelProtocol {
-  void getUpcoming();
   void Function()? onFailureGetUpcoming;
   void Function(Movie movie)? onTapGoToDetails;
 }
@@ -22,7 +21,7 @@ class _UpcomingViewControllerState extends State<UpcomingViewController> {
   @override
   void initState() {
     _bind();
-    widget.viewModel.getUpcoming();
+    widget.viewModel.getUpcoming(null);
     super.initState();
   }
 
