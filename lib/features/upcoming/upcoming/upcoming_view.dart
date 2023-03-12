@@ -3,6 +3,7 @@ import '../../../support/components/card.dart';
 import '../../../support/utils/localize.dart';
 
 abstract class UpcomingViewModelProtocol extends ChangeNotifier {
+  int get page;
   int get index;
   int get length;
   bool get isEmpty;
@@ -12,6 +13,8 @@ abstract class UpcomingViewModelProtocol extends ChangeNotifier {
   String title(int index);
   void setIndex(int index);
   String imagePath(int index);
+  void getUpcoming(int? page);
+  void moreRequest(int page);
 }
 
 class UpcomingView extends StatelessWidget {
@@ -41,31 +44,33 @@ class UpcomingView extends StatelessWidget {
             );
           }
 
-          return CustomScrollView(
-            slivers: [
-              SliverPadding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 16,
-                ),
-                sliver: SliverGrid(
-                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                    mainAxisSpacing: 20,
-                    maxCrossAxisExtent: 200,
+          return RefreshIndicator(
+            onRefresh: () async => viewModel.moreRequest(viewModel.page + 1),
+            child: CustomScrollView(
+              slivers: [
+                SliverPadding(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  sliver: SliverGrid(
+                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: MediaQuery.of(context).size.width / 4,
+                      mainAxisExtent: MediaQuery.of(context).size.width / 3,
+                      mainAxisSpacing: 8,
+                    ),
+                    delegate: SliverChildBuilderDelegate(
+                      (_, index) {
+                        return InkWell(
+                          onTap: () => viewModel.didTap(index),
+                          child: CardMovie(
+                            path: viewModel.imagePath(index),
+                          ),
+                        );
+                      },
+                      childCount: viewModel.length,
+                    ),
                   ),
-                  delegate: SliverChildBuilderDelegate(
-                    (_, index) {
-                      return InkWell(
-                        onTap: () => viewModel.didTap(index),
-                        child: CardMovie(
-                          path: viewModel.imagePath(index),
-                        ),
-                      );
-                    },
-                    childCount: viewModel.length,
-                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           );
         },
       ),

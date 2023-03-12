@@ -4,6 +4,7 @@ import 'package:movies/features/upcoming/use_case/upcoming_use_case.dart';
 import 'package:movies/features/upcoming/upcoming/upcoming_view_controller.dart';
 
 class UpcomingViewModel extends UpcomingProtocol {
+  int _page = 1;
   bool _isLoading = false;
   int _selectedIndex = 0;
   List<Movie> _movies = [];
@@ -19,6 +20,9 @@ class UpcomingViewModel extends UpcomingProtocol {
 
   @override
   int get index => _selectedIndex;
+
+  @override
+  int get page => _page;
 
   @override
   void setIndex(int index) {
@@ -46,11 +50,20 @@ class UpcomingViewModel extends UpcomingProtocol {
   bool get isEmpty => _movies.isEmpty;
 
   @override
-  void getUpcoming() {
+  void moreRequest(int page) {
+    _page = page;
+    getUpcoming(page);
+
+    notifyListeners();
+  }
+
+  @override
+  void getUpcoming(int? page) {
     setLoading(true);
     useCase.execute(
+      page: _page.toString(),
       success: (movies) {
-        _movies = movies;
+        _movies.addAll(movies);
 
         setLoading(false);
       },

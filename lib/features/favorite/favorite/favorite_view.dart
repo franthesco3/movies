@@ -22,12 +22,6 @@ class FavoriteView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('MoviesDB - Favorites'),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 16),
-            child: Icon(Icons.refresh),
-          )
-        ],
       ),
       backgroundColor: Colors.blueGrey,
       body: AnimatedBuilder(
@@ -54,14 +48,12 @@ class FavoriteView extends StatelessWidget {
             child: CustomScrollView(
               slivers: [
                 SliverPadding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 16,
-                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 16),
                   sliver: SliverGrid(
-                    gridDelegate:
-                        const SliverGridDelegateWithMaxCrossAxisExtent(
-                      mainAxisSpacing: 20,
-                      maxCrossAxisExtent: 200,
+                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: MediaQuery.of(context).size.width / 4,
+                      mainAxisExtent: MediaQuery.of(context).size.width / 3,
+                      mainAxisSpacing: 8,
                     ),
                     delegate: SliverChildBuilderDelegate(
                       (_, index) {
